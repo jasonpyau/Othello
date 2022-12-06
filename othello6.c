@@ -399,14 +399,21 @@ void updateBoard(char move[THREE], char board[ROW][COL], struct Player *player) 
 void updateHorizontal(int row, int col, char board[ROW][COL], struct Player *player) {
     char playChar = player->playChar;
     int c;
+    int count = 0;
     int flank = FALSE;
     //UPDATES HORIZTONAL FROM PLAYER's MOVE TO LEFT 
     for (c = col-1; c >= 0; c--) {
-        if (board[row][c] == SPACE || board[row][c] == playChar) {
+        if (board[row][c] == SPACE) {
+            break;
+        }
+        else if (board[row][c] == playChar) {
+            if (count > 0) {
+                flank = TRUE;
+            }
             break;
         }
         else if (board[row][c] != playChar) {
-            flank = TRUE;
+            count++;
         }
     }
     if (flank == TRUE) {
@@ -415,13 +422,20 @@ void updateHorizontal(int row, int col, char board[ROW][COL], struct Player *pla
         }
         flank = FALSE;
     }
+    count = 0;
     //UPDATES HORIZTONAL FROM PLAYER's MOVE TO RIGHT 
     for (c = col+1; c < COL; c++) {
-        if (board[row][c] == SPACE || board[row][c] == playChar) {
+        if (board[row][c] == SPACE) {
+            break;
+        }
+        else if (board[row][c] == playChar) {
+            if (count > 0) {
+                flank = TRUE;
+            }
             break;
         }
         else if (board[row][c] != playChar) {
-            flank = TRUE;
+            count++;
         }
     }
     if (flank == TRUE) {
@@ -436,14 +450,21 @@ void updateHorizontal(int row, int col, char board[ROW][COL], struct Player *pla
 void updateVertical(int row, int col, char board[ROW][COL], struct Player *player) {
     char playChar = player->playChar;
     int r; 
+    int count = 0;
     int flank = FALSE;
     //UPDATES VERTICAL FROM PLAYER's MOVE TO TOP 
     for (r = row-1; r >= 0; r--) {
-        if (board[r][col] == SPACE || board[r][col] == playChar) {
+        if (board[r][col] == SPACE) {
+            break;
+        }
+        else if (board[r][col] == playChar) {
+            if (count > 0) {
+                flank = TRUE;
+            }
             break;
         }
         else if (board[r][col] != playChar) {
-            flank = TRUE;
+            count++;
         }
     }
     if (flank == TRUE) {
@@ -452,13 +473,20 @@ void updateVertical(int row, int col, char board[ROW][COL], struct Player *playe
         }
         flank = FALSE;
     }
+    count = 0;
     //UPDATES VERTICAL FROM PLAYER's MOVE TO BOTTOM 
     for (r = row+1; r < ROW; r++) {
-        if (board[r][col] == SPACE || board[r][col] == playChar) {
+        if (board[r][col] == SPACE) {
+            break;
+        }
+        else if (board[r][col] == playChar) {
+            if (count > 0) {
+                flank = TRUE;
+            }
             break;
         }
         else if (board[r][col] != playChar) {
-            flank = TRUE;
+            count++;
         }
     }
     if (flank == TRUE) {
@@ -474,14 +502,21 @@ void updateDiagonal(int row, int col, char board[ROW][COL], struct Player *playe
     char playChar = player->playChar;
     int r; 
     int c;
+    int count = 0;
     int flank = FALSE;
     //UPDATES DIAGONAL FROM PLAYER's MOVE TO TOP LEFT
     for (r = row-1, c = col-1; r >= 0 && c >= 0; r--, c--) {
-        if (board[r][c] == SPACE || board[r][c] == playChar) {
+        if (board[r][c] == SPACE) {
+            break;
+        }
+        else if (board[r][c] == playChar) {
+            if (count > 0) {
+                flank = TRUE;
+            }
             break;
         }
         else if (board[r][c] != playChar) {
-            flank = TRUE;
+            count++;
         }
     }
     if (flank == TRUE) {
@@ -490,13 +525,20 @@ void updateDiagonal(int row, int col, char board[ROW][COL], struct Player *playe
         }
         flank = FALSE;
     }
+    count = 0;
     //UPDATES DIAGONAL FROM PLAYER's MOVE TO BOTTOM RIGHT
     for (r = row+1, c = col+1; r < ROW && c < COL; r++, c++) {
-        if (board[r][c] == SPACE || board[r][c] == playChar) {
+        if (board[r][c] == SPACE) {
+            break;
+        }
+        else if (board[r][c] == playChar) {
+            if (count > 0) {
+                flank = TRUE;
+            }
             break;
         }
         else if (board[r][c] != playChar) {
-            flank = TRUE;
+            count++;
         }
     }
     if (flank == TRUE) {
@@ -505,13 +547,20 @@ void updateDiagonal(int row, int col, char board[ROW][COL], struct Player *playe
         }
         flank = FALSE;
     }
+    count = 0;
     //UPDATES DIAGONAL FROM PLAYER's MOVE TO BOTTOM LEFT
     for (r = row+1, c = col-1; r < ROW && c > 0; r++, c--) {
-        if (board[r][c] == SPACE || board[r][c] == playChar) {
+        if (board[r][c] == SPACE) {
+            break;
+        }
+        else if (board[r][c] == playChar) {
+            if (count > 0) {
+                flank = TRUE;
+            }
             break;
         }
         else if (board[r][c] != playChar) {
-            flank = TRUE;
+            count++;
         }
     }
     if (flank == TRUE) {
@@ -520,13 +569,20 @@ void updateDiagonal(int row, int col, char board[ROW][COL], struct Player *playe
         }
         flank = FALSE;
     }
+    count = 0;
     //UPDATES DIAGONAL FROM PLAYER's MOVE TO TOP RIGHT
     for (r = row-1, c = col+1; r >= 0 && c < COL; r--, c++) {
-        if (board[r][c] == SPACE || board[r][c] == playChar) {
+        if (board[r][c] == SPACE) {
+            break;
+        }
+        else if (board[r][c] == playChar) {
+            if (count > 0) {
+                flank = TRUE;
+            }
             break;
         }
         else if (board[r][c] != playChar) {
-            flank = TRUE;
+            count++;
         }
     }
     if (flank == TRUE) {
